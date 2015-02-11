@@ -43,6 +43,8 @@ if not ISRELEASED:
 else:
     FULLVERSION += QUALIFIER
 
+pkg_list = find_packages()
+print '>>>',pkg_list
 
 def write_version_py(filename=None):
     cnt = """\
@@ -65,6 +67,7 @@ setup(
     name='nilm_metadata',
     version='0.2.0',
     packages = find_packages(),
+    package_data={'nilm_metadata': ['central_metadata/appliance_types/*.yaml', 'central_metadata/country.yaml']},
     install_requires = ['PyYAML'],
     description='Concatenate NILM metadata',
     author='Jack Kelly',
@@ -80,5 +83,10 @@ setup(
         'Topic :: Scientific/Engineering :: Mathematics',
     ],
     keywords='smartmeters power electricity energy analytics redd '
-             'disaggregation nilm nialm'
+             'disaggregation nilm nialm',
+    #data_files=[('central_metadata', ['appliance_types/appliance.yaml', 'country.yaml'])]
 )
+
+#    components.yaml            heating.yaml   misc.yaml
+# cold.yaml        consumer_electronics.yaml  ict.yaml       wet.yaml
+# commercial.yaml  cooking.yaml               lighting.yaml
